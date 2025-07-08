@@ -1,3 +1,5 @@
+import z from "zod";
+
 export const profileSchema = z.object({
   name: z
     .string({ required_error: "Name is required" })
@@ -28,4 +30,15 @@ export const interestsSchema = z.object({
     .refine((value) => (value === "yes" ? true : false), {
       message: "Walk must be 'yes' or 'no'",
     }),
+});
+
+export const settingsSchema = z.object({
+  notifications: z.boolean().default(false),
+  theme: z.enum(["light", "dark"]).default("light"),
+});
+
+export const termsSchema = z.object({
+  acceptTerms: z.boolean().refine((value) => value === true, {
+    message: "You must accept the terms and conditions",
+  }),
 });
