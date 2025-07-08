@@ -15,6 +15,7 @@ export const profileSchema = z.object({
     .min(10, { message: "Bio must be at least 10 characters long" })
     .max(200, { message: "Bio must be at most 200 characters long" }),
 });
+
 export const interestsSchema = z.object({
   hoobies: z
     .array(z.string().min(1, { message: "At least one hobby is required" }))
